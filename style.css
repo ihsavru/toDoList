@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css?family=Allerta+Stencil|Bubbler+One');
+@import url('https://fonts.googleapis.com/css?family=Arvo');
+
+body{
+	background-color: #f4f3ef;
+}
+h1{
+	font-family: 'Allerta Stencil', sans-serif;
+	font-size: 50px;
+}
+h2{
+	font-family: 'Arvo', serif;
+    color: rgb(158, 209, 186);
+}
+input[type=text]{
+	font-family: 'Arvo', serif;
+	padding: 10px;
+	width: 70%;
+	border: 2px solid rgb(170, 170, 170);
+}
+input[type=submit]{
+	font-family: 'Arvo', serif;
+	padding: 10px;
+	background-color: rgb(158, 209, 186);
+	color: white;
+	border: none;
+	border-right: 2px solid rgb(77, 155, 141);
+	border-bottom: 2px solid rgb(77, 155, 141);
+	cursor: pointer;
+}
+.container{
+	position: absolute;
+	left: 50%;
+	top: 10%;
+	background-color: rgba(255, 255, 255, 0.5);
+	padding-left: 100px;
+	padding-right: 100px;
+	-webkit-transform: translate(-50%,0);
+	transform: translate(-50%,0);
+	text-align: center;
+}
+ul{
+	list-style-position: inside;
+    padding-left:0;
+}
+
+li{
+	position: relative;
+	background-color:rgb(158, 209, 186);
+	border-right-style: solid;
+	border-right-color: rgb(247, 44, 91);
+	border-right-width: 20px;
+	border-left-style: solid;
+	border-left-color: rgb(247, 44, 91);
+	border-left-width: 20px;
+	padding:10px;
+	color:rgb(255,255,255);
+	font-family: 'Arvo', serif;
+	-webkit-transition:all 0.5s ease;
+}
+li:hover{
+	background-color:rgb(77, 155, 141);
+	border-right-style: solid;
+	border-right-color: rgb(193, 56, 90);
+	border-right-width: 20px;
+	border-left-style: solid;
+	border-left-color: rgb(193, 56, 90);
+	border-left-width: 20px;
+	transform:translateX(20px);
+	cursor:pointer;
+}

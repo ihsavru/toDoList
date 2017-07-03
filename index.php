@@ -1,4 +1,8 @@
-<?php session_start()?>
+<?php 
+session_start();
+if($_SESSION['user'] == '')
+    header("Location: login.php")
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,8 +13,8 @@
 </head>
 <body>
      <div class="container">
-        <button id="logout">LOGOUT</button>
-        <?php echo "WELCOME ", $_SESSION['user'], "!" ?>
+        <button id="logout">LOGOUT</button><br>
+        <h4><?php echo "WELCOME ", $_SESSION['user'], "!" ?></h4>
         <h1>TO-DO LIST</h1>
         <form  method = "post" action = "index.php">
             <input type="text" name="task" placeholder="Add another task..." autocomplete="off">
@@ -20,17 +24,21 @@
         <ul  style="list-style: none;">
         <?php
             include("db.php");
-            if(isset($_POST['go'])){
+            
                 $user = $_SESSION['user'];
-                $query = "SELECT * FROM tasks WHERE username = '$user' ";
+                $query = "SELECT * FROM tasks";
                 $printMessages = mysqli_query($connection, $query);
                 $index = 1;
-                while($row = mysqli_fetch_array($printMessages)){
-                    $index = $row['i'];
-                    if($row['done'] == 0)
-                    echo "<li id = '$index'>".$row['task']."</li>";
-                    $index = $index + 1;
+                if($printMessages){
+                    while($row = mysqli_fetch_array($printMessages)){
+                        $index = $row['i'];
+                        if($row['done'] == 0 && $row['username'] == $_SESSION['user'])
+                        echo "<li id = '$index'>".$row['task']."</li>";
+                        $index = $index + 1;
+                    }
                 }
+                else
+                    die("Error".mysqli_error($connection));
                 $task = mysqli_real_escape_string($connection, $_POST['task']);
                 if($task !== ''){
                     $post = "INSERT INTO tasks (i,task,done, username) VALUES ('$index','$task','0','$user')";
@@ -42,7 +50,7 @@
                         echo "Error: " . $result . "<br>" . mysqli_error($connection);
                     }
                 }
-            }
+            
         ?>
         </ul>
     </div> 

@@ -13,7 +13,7 @@
                 header("Location: index.php");
             }
             else{
-                die("Wrong username/password".mysqli_error());
+                die("Wrong username/password".mysqli_error($connection));
             }
         }
     }
@@ -29,7 +29,21 @@
     	<h1>LOGIN</h1>
     	<form method="POST" action = "login.php">
     		Username: <input type="text" name="username" placeholder="Username" autocomplete="off"><br>
+            <div class = "warning">
+                <?php
+                    if(isset($_POST['login']))
+                    if($_POST['username'] == '')
+                        echo "Username is required! <br>";
+                ?>
+            </div>
     		Password: <input type="password" name="password" placeholder="Password" autocomplete="off"><br>
+            <div class = "warning">
+                <?php
+                    if(isset($_POST['login']))
+                    if($_POST['password'] == '')
+                        echo "Password is required! <br>";
+                ?>
+            </div>
     		<input type="submit" name="login" value="Login"><br>
     	</form>
     	New user?<br>

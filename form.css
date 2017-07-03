@@ -40,6 +40,11 @@ input[type=submit], button{
 	border-right: 2px solid rgb(77, 155, 141);
 	border-bottom: 2px solid rgb(77, 155, 141);
 	cursor: pointer;
-	width: 100%;
+	width: 110%;
 
+}
+
+.warning{
+	color: rgb(247, 44, 91);
+	padding: 10px;
 }

@@ -28,10 +28,31 @@
     	<form action = "register.php" method="POST">
     		<label>Username:</label>
             <input type="text" name="username" placeholder="Username"><br>
+            <div class = "warning">
+                <?php
+                    if(isset($_POST['signup']))
+                    if($_POST['username'] == '')
+                        echo "Username is required! <br>";
+                ?>
+            </div>
     		<label>Email:</label> 
             <input type="text" name="email" placeholder="Email" ><br>
+            <div class = "warning">
+                <?php
+                    if(isset($_POST['signup']))
+                    if($_POST['email'] == '')
+                        echo "Email is required! <br>";
+                ?>
+            </div>
     		<label>Password:</label> 
             <input type="password" name="password" placeholder="Password" autocomplete="off"><br>
+            <div class = "warning">
+                <?php
+                    if(isset($_POST['signup']))
+                    if($_POST['password'] == '')
+                        echo "Password is required! <br>";
+                ?>
+            </div>
     		<input type="submit" name="signup" value="Sign Up">
     	</form>
     	Existing user?<br>

@@ -46,7 +46,7 @@
             </div>
     		<input type="submit" name="login" value="Login"><br>
     	</form>
-    	New user?<br>
+    	<p>New user?</p>
     	<button>Sign up</button>
     </div>
 </body>

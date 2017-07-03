@@ -55,7 +55,7 @@
             </div>
     		<input type="submit" name="signup" value="Sign Up">
     	</form>
-    	Existing user?<br>
+    	<p>Existing user?</p>
     	<button>Login</button><br>
     </div>
 </body>

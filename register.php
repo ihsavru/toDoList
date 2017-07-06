@@ -1,6 +1,6 @@
 <?php
     include ( "db.php");
-    if(isset($_POST['signup'])&& $_POST['username'] != '' && $_POST['password'] != '' && $_POST['email'] != ''){
+    if(isset($_POST['signup'])&& $_POST['username'] != '' && $_POST['password'] != '' && $_POST['email'] != '' && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
         session_start();
         $username =  mysqli_real_escape_string($connection,$_POST['username']);
         $password = mysqli_real_escape_string($connection,$_POST['password']);
@@ -19,7 +19,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Login</title>
+	<title>Register</title>
 	<link rel="stylesheet" type="text/css" href="form.css">
 </head>
 <body>
@@ -39,9 +39,14 @@
             <input type="text" name="email" placeholder="Email" ><br>
             <div class = "warning">
                 <?php
-                    if(isset($_POST['signup']))
-                    if($_POST['email'] == '')
-                        echo "Email is required! <br>";
+                    if(isset($_POST['signup'])){
+                        if($_POST['email'] == '')
+                            echo "Email is required! <br>";
+                        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+                            echo "Email address is invalid!";
+                            unset($_POST['email']);
+                        }
+                    }
                 ?>
             </div>
     		<label>Password:</label> 

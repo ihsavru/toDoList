@@ -1,6 +1,8 @@
 <?php
     include ( "db.php");
-    if(isset($_POST['signup'])&& $_POST['username'] != '' && $_POST['password'] != '' && $_POST['email'] != '' && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+    $usr = $_POST['username'];
+    $sql = mysqli_query($connection,"SELECT * FROM users WHERE username = '$usr' ");
+    if(isset($_POST['signup'])&& $_POST['username'] != '' && $_POST['password'] != '' && $_POST['email'] != '' && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) && mysqli_num_rows($sql) === 0 && preg_match('/^[a-zA-Z0-9@_]*$/', $_POST['username']) ){
         session_start();
         $username =  mysqli_real_escape_string($connection,$_POST['username']);
         $password = mysqli_real_escape_string($connection,$_POST['password']);
@@ -33,6 +35,13 @@
                     if(isset($_POST['signup']))
                     if($_POST['username'] == '')
                         echo "Username is required! <br>";
+                    if(mysqli_num_rows($sql)>=1){
+                        echo "Username already exists!";
+                        unset($_POST['username']);
+                     }   
+                    if (!preg_match('/^[a-zA-Z0-9@_]*$/', $_POST['username'])) {
+                        echo ' Re-Enter Your Name! Format Inccorrect! (only alpha, numbers, @_ are allowed)';
+    } 
                 ?>
             </div>
     		<label>Email:</label> 
